@@ -1,0 +1,392 @@
+/* src/pages/Home.css */
+
+/*.home-container {*/
+/*    max-width: 500px;*/
+/*    margin: auto;*/
+/*    padding: 20px;*/
+/*    text-align: center;*/
+/*}*/
+
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    background-color: #f0f0f0; /* Light gray background */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 1280 x 824 */
+.home-container {
+    position: relative;
+    width: 1280px;
+    height: 832px;
+
+    background: #FBFCFE;
+}
+
+
+/*!* Frame 1 *!*/
+
+/*!* Auto layout *!*/
+/*display: flex;*/
+/*flex-direction: column;*/
+/*align-items: flex-start;*/
+/*padding: 0px;*/
+/*gap: 24px;*/
+
+/*position: absolute;*/
+/*width: 480px;*/
+/*height: 462px;*/
+/*left: calc(50% - 480px/2);*/
+/*top: calc(50% - 462px/2);*/
+
+
+
+/*!* container *!*/
+
+/*!* Auto layout *!*/
+/*display: flex;*/
+/*flex-direction: column;*/
+/*align-items: center;*/
+/*padding: 40px;*/
+/*gap: 32px;*/
+
+/*width: 480px;*/
+/*height: 462px;*/
+
+/*background: #FFFFFF;*/
+/*box-shadow: 0px 15px 80px rgba(34, 3, 134, 0.06);*/
+/*border-radius: 30px;*/
+
+/*!* Inside auto layout *!*/
+/*flex: none;*/
+/*order: 0;*/
+/*flex-grow: 0;*/
+
+
+/*!* Logo *!*/
+
+/*width: 300px;*/
+/*height: 92px;*/
+
+
+/*!* Inside auto layout *!*/
+/*flex: none;*/
+/*order: 0;*/
+/*flex-grow: 0;*/
+
+
+/*!* Vector *!*/
+
+/*position: absolute;*/
+/*left: 10.21%;*/
+/*right: 10%;*/
+/*top: 33.38%;*/
+/*bottom: 33.38%;*/
+
+/*background: #4A24AC;*/
+
+
+/*!* Content *!*/
+
+/*!* Auto layout *!*/
+/*display: flex;*/
+/*flex-direction: column;*/
+/*align-items: center;*/
+/*padding: 0px;*/
+/*gap: 24px;*/
+
+/*width: 400px;*/
+/*height: 258px;*/
+
+
+/*!* Inside auto layout *!*/
+/*flex: none;*/
+/*order: 1;*/
+/*align-self: stretch;*/
+/*flex-grow: 0;*/
+
+
+/*!* Title *!*/
+
+/*width: 400px;*/
+/*height: 28px;*/
+
+/*!* Nagłówek - 22px - SemiBold *!*/
+/*font-family: 'Montserrat';*/
+/*font-style: normal;*/
+/*font-weight: 600;*/
+/*font-size: 22px;*/
+/*line-height: 28px;*/
+/*!* identical to box height, or 127% *!*/
+/*display: flex;*/
+/*align-items: center;*/
+/*text-align: center;*/
+/*letter-spacing: -0.02em;*/
+
+/*color: #363C56;*/
+
+
+/*!* Inside auto layout *!*/
+/*flex: none;*/
+/*order: 0;*/
+/*align-self: stretch;*/
+/*flex-grow: 0;*/
+
+
+/*!* input-filled *!*/
+
+/*width: 400px;*/
+/*height: 56px;*/
+
+
+/*!* Inside auto layout *!*/
+/*flex: none;*/
+/*order: 1;*/
+/*align-self: stretch;*/
+/*flex-grow: 0;*/
+
+
+/*!* Rectangle *!*/
+
+/*position: absolute;*/
+/*height: 1px;*/
+/*left: 0px;*/
+/*right: 0px;*/
+/*bottom: 0px;*/
+
+/*background: #4A24AC;*/
+/*opacity: 0.8;*/
+
+
+/*!* 1 *!*/
+
+/*position: absolute;*/
+/*height: 20px;*/
+/*left: 0px;*/
+/*right: 42.01px;*/
+/*top: 25px;*/
+
+/*!* Text - 14px - Medium *!*/
+/*font-family: 'Montserrat';*/
+/*font-style: normal;*/
+/*font-weight: 500;*/
+/*font-size: 14px;*/
+/*line-height: 17px;*/
+/*display: flex;*/
+/*align-items: center;*/
+
+/*color: #363C56;*/
+
+
+
+/*!* Adres twojej strony www *!*/
+
+/*position: absolute;*/
+/*width: 358.11px;*/
+/*height: 20px;*/
+/*left: 0px;*/
+/*top: 0px;*/
+
+/*!* Text - 12px - Regular *!*/
+/*font-family: 'Montserrat';*/
+/*font-style: normal;*/
+/*font-weight: 400;*/
+/*font-size: 12px;*/
+/*line-height: 17px;*/
+/*!* or 142% *!*/
+/*display: flex;*/
+/*align-items: center;*/
+
+/*color: #4A24AC;*/
+
+
+
+/*!* button_primary *!*/
+
+/*width: 400px;*/
+/*height: 46px;*/
+
+/*!* II / karta *!*/
+/*filter: drop-shadow(0px 0px 30px rgba(54, 60, 86, 0.07));*/
+
+/*!* Inside auto layout *!*/
+/*flex: none;*/
+/*order: 2;*/
+/*flex-grow: 0;*/
+
+
+/*!* Rectangle 67 *!*/
+
+/*position: absolute;*/
+/*left: 0px;*/
+/*right: 0px;*/
+/*top: 0px;*/
+/*bottom: 0px;*/
+
+/*background: #4A24AC;*/
+/*border-radius: 30px;*/
+
+
+/*!* dodaj *!*/
+
+/*!* Auto layout *!*/
+/*display: flex;*/
+/*flex-direction: row;*/
+/*justify-content: center;*/
+/*align-items: center;*/
+/*padding: 0px;*/
+/*gap: 2px;*/
+
+/*position: absolute;*/
+/*width: 71px;*/
+/*height: 17px;*/
+/*left: calc(50% - 71px/2);*/
+/*top: calc(50% - 17px/2);*/
+
+
+
+/*!* plus (1) 1 *!*/
+
+/*display: none;*/
+/*width: 24px;*/
+/*height: 24px;*/
+
+
+/*!* Inside auto layout *!*/
+/*flex: none;*/
+/*order: 0;*/
+/*flex-grow: 0;*/
+
+
+/*!* Vector *!*/
+
+/*position: absolute;*/
+/*left: 50%;*/
+/*right: 50%;*/
+/*top: 20.83%;*/
+/*bottom: 20.83%;*/
+
+/*!* New / Center White *!*/
+/*border: 1px solid #FFFFFF;*/
+
+
+/*!* Vector *!*/
+
+/*position: absolute;*/
+/*left: 20.83%;*/
+/*right: 20.83%;*/
+/*top: 50%;*/
+/*bottom: 50%;*/
+
+/*!* New / Center White *!*/
+/*border: 1px solid #FFFFFF;*/
+
+
+/*!* Dodaj nowego użytkownika *!*/
+
+/*width: 71px;*/
+/*height: 17px;*/
+
+/*!* Text - 14px - Medium *!*/
+/*font-family: 'Montserrat';*/
+/*font-style: normal;*/
+/*font-weight: 500;*/
+/*font-size: 14px;*/
+/*line-height: 17px;*/
+/*!* identical to box height *!*/
+/*display: flex;*/
+/*align-items: center;*/
+
+/*color: #FFFFFF;*/
+
+
+/*!* Inside auto layout *!*/
+/*flex: none;*/
+/*order: 1;*/
+/*flex-grow: 0;*/
+
+
+/*!* result *!*/
+
+/*!* Auto layout *!*/
+/*display: flex;*/
+/*flex-direction: row;*/
+/*align-items: center;*/
+/*padding: 16px;*/
+/*gap: 16px;*/
+
+/*width: 400px;*/
+/*height: 56px;*/
+
+/*background: #FAFAFA;*/
+/*border-radius: 8px;*/
+
+/*!* Inside auto layout *!*/
+/*flex: none;*/
+/*order: 3;*/
+/*align-self: stretch;*/
+/*flex-grow: 0;*/
+
+
+/*!* result-text *!*/
+
+/*width: 328px;*/
+/*height: 17px;*/
+
+/*font-family: 'Montserrat';*/
+/*font-style: normal;*/
+/*font-weight: 700;*/
+/*font-size: 15px;*/
+/*line-height: 17px;*/
+/*!* identical to box height, or 113% *!*/
+
+/*color: #4A24AC;*/
+
+
+/*!* Inside auto layout *!*/
+/*flex: none;*/
+/*order: 0;*/
+/*flex-grow: 1;*/
+
+
+/*!* icon_copy *!*/
+
+/*width: 24px;*/
+/*height: 24px;*/
+
+
+/*!* Inside auto layout *!*/
+/*flex: none;*/
+/*order: 1;*/
+/*flex-grow: 0;*/
+
+
+/*!* Bounding box *!*/
+
+/*position: absolute;*/
+/*width: 24px;*/
+/*height: 24px;*/
+/*left: 360px;*/
+/*top: 16px;*/
+
+/*background: #D9D9D9;*/
+
+
+/*!* file_copy *!*/
+
+/*position: absolute;*/
+/*left: 90.63%;*/
+/*right: 4.88%;*/
+/*top: 31.25%;*/
+/*bottom: 31.25%;*/
+
+/*background: #676C80;*/
+/**!*/
+
+
+
