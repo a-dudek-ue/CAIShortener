@@ -43,7 +43,6 @@ export default function TextSpinnerLoader() {
         };
         animateLoader();
     }, []);
-
     return (
         <motion.div ref={scope} className="circle" style={{width: radius * 2}}>
             <p aria-label={text}/>

@@ -1,30 +1,44 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import {AxiosRequestConfig} from "axios";
 import '../helpers/helpers'
 import {getIpAddress, getBrowserAgent,isUrlValid} from "../helpers/helpers";
 
-export const API_URL = 'http://localhost:8000/api';
+export const API_URL = process.env.REACT_APP_API_URL || 'http://center.ai:8000/api';
+export const username = process.env.REACT_DJANGO_USER ||'andrzej';
+export const password = process.env.REACT_DJANGO_PASSWORD ||'ad';
+
 const urlValidButNotActive = "URL valid but not active";
 const cannotGenerateLinkDueToInternalError = "Cannot generate link due to internal error, sorry";
 const pleaseProvideValidURLToShorter = "Please Provide Valid URL to Shorter";
-const authToken = '553aa51c20a52b1665026785338f958b58b4098d';
+var  authToken:string | null;
 
 
 const api = axios.create({
     baseURL: API_URL,
     headers: {
         'Content-Type': 'application/json',
-        // 'Authorization':'Token  553aa51c20a52b1665026785338f958b58b4098d'
     },
 });
 
-export const setAuthToken = (token: string | null) => {
-    if (token) {
-        api.defaults.headers.common['Authorization'] = `Token  ${token}`;
-    } else {
-        delete api.defaults.headers.common['Authorization'];
-    }
+
+export const getAuthToken = async(username:string, password:string) => {
+ const response = await api.post(`${API_URL}/token/`, { "username":username, "password":password });
+ if(response.data.access==null) {
+     const response2 = await api.post(`${API_URL}/token/refresh`, { "refresh":"$response.data.refresh"});
+     return response2.data.access;
+ }
+ return response.data.access;
 };
+
+export const setAuthToken = async (username:string, password:string) => {
+  authToken = localStorage.getItem('authToken');
+  if (authToken===null || authToken==="unknown") {
+    authToken=await getAuthToken(username,password);
+    localStorage.setItem('authToken',authToken===null?"unknown":authToken);
+  }
+  api.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
+};
+
 
 export const createLink = async (full_link: string) => {
     var checkLink=await isUrlValid(full_link);
@@ -32,11 +46,11 @@ export const createLink = async (full_link: string) => {
         return {"short_link": pleaseProvideValidURLToShorter,"success":false};
     }
     try {
-        setAuthToken(authToken);
         var ip=await getIpAddress()
         if (ip===null){
             ip='Undefined'
         }
+        await setAuthToken('andrzej','ad');
         const response = await api.post('/create_link/',{full_link: full_link,'ip':ip,'user_agent':getBrowserAgent()});
         console.log(response.status.toString())
         if(response.status==201){
@@ -70,13 +84,19 @@ export const retrieve_link =  async (short_link: string | undefined):Promise<boo
     if(short_link == null){
         return false;
     }
-    setAuthToken(authToken);
     var ip=await getIpAddress()
     if (ip===null){
         ip='Undefined'
     }
+    await setAuthToken('andrzej','ad');
+    // var at:any=authToken;
+    // if(at==null){
+    //     at=getAuthToken('andrzej','ad');
+    // }
+
     try{
-        const response = await api.post(`${API_URL}/click_link/`,{short_link:short_link,'ip':ip,'user_agent':getBrowserAgent()});
+        const response = await api.post(`${API_URL}/click_link/`,{short_link:short_link,'ip':ip,'user_agent':getBrowserAgent()}
+        );
 
         // Assuming the backend returns a JSON object with `full_link`
         if(response.status==204){

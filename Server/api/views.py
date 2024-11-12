@@ -20,7 +20,6 @@ FULL_LINK = "full_link"
 
 class CreateLinkView(APIView):
     permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
 
     def post(self, request):
         data = request.data
@@ -37,9 +36,6 @@ class CreateLinkView(APIView):
 
 class ClickLinkView(APIView):
     permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
-    # authentication_classes = [JWTAuthentication]
-
     def post(self, request):
         data = request.data
         short_link = data.get(SHORT_LINK)
@@ -55,7 +51,6 @@ class ClickLinkView(APIView):
 
 class LinksByCreatorView(APIView):
     permission_classes = [IsAuthenticated]
-    # authentication_classes = [JWTAuthentication]
 
     def get(self, request, user_id):
         links = Link.objects.filter(created_by=user_id)
@@ -64,7 +59,6 @@ class LinksByCreatorView(APIView):
 
 class LinksByCountryView(APIView):
     permission_classes = [IsAuthenticated]
-    # authentication_classes = [JWTAuthentication]
 
     def get(self, request, country):
         clicks = Click.objects.filter(user__country=country).values('link').distinct()
@@ -76,7 +70,6 @@ class LinksByCountryView(APIView):
 
 class LinksByUserAgentView(APIView):
     permission_classes = [IsAuthenticated]
-    # authentication_classes = [JWTAuthentication]
 
     def get(self, request, user_agent):
         clicks = Click.objects.filter(user__user_agent=user_agent).values('link').distinct()

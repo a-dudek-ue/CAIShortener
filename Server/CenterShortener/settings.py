@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a**^(%dfmochdf9l36@!v!%$=pc=gh#qlh#isw4e^cp(!+5!+('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', True),
 
 ALLOWED_HOSTS = []
 
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken',
+    # 'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'corsheaders',
     'api'
 ]
@@ -83,9 +84,9 @@ WSGI_APPLICATION = 'CenterShortener.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'shortener',
-        'USER': 'genius',
-        'PASSWORD': 'nation',
+        'NAME': os.getenv('DB_NAME', 'shortener'),
+        'USER': os.getenv('DB_USER', 'andrzej'),
+        'PASSWORD': os.getenv('DB_NAME', 'shortener'),
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -93,7 +94,8 @@ DATABASES = {
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -141,7 +143,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GEOIP_PATH =os.path.join(BASE_DIR, 'geodata/')
-DEFAULT_COUNTRY ='Poland'
-DOMAIN_NAME="http://localhost:3000/"
-SHORT_LINK_LENGTH=8
 CORS_ALLOW_ALL_ORIGINS=True
+
+
+DEFAULT_COUNTRY =os.getenv('DEFAULT_COUNTRY', 'Poland');
+DOMAIN_NAME=os.getenv('DOMAIN_NAME',"http://center.ai/");
+SHORT_LINK_LENGTH=os.getenv('SHORT_LINK_LENGTH',8);

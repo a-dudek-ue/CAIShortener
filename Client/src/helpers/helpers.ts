@@ -47,11 +47,10 @@ export interface ShortLink {
 export const getLocalItems=(): ShortLink[] => {
     const savedLinks = localStorage.getItem('shortLinks');
     if (savedLinks) {
-        console.log(savedLinks);
+        // console.log(savedLinks);
         return (JSON.parse(savedLinks));
     }
     else{
-        alert("pusto");
         return [];
     }
 }

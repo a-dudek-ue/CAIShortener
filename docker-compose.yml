@@ -1,6 +1,6 @@
 # docker-compose.yml
 
-version: '3.8'
+#version: '3.8'
 services:
   backend:
     build:
@@ -9,14 +9,21 @@ services:
     container_name: django_backend
     environment:
       - SHORT_LINK_LENGTH=8
+      - DEFAULT_COUNTRY = Poland
+      - DOMAIN_NAME = http://center.ai/
+      - SHORT_LINK_LENGTH = 8
+      - DB_USER = andrzej
+      - DB_PASSWORD = shortener
+      - DB_NAME =  shortener
+      - DEBUG = True
     ports:
       - "8000:8000"
     networks:
       - app-network
     depends_on:
       - db
-    env_file:
-      - ./server/.env
+#    env_file:
+#      - ./server/.env
 
   frontend:
     build:
@@ -24,11 +31,13 @@ services:
       dockerfile: Dockerfile
     container_name: react_frontend
     ports:
-      - "3000:80"
+      - "80:3000"
     networks:
       - app-network
     environment:
       - REACT_APP_API_URL=http://center.ai:8000/api/
+      - REACT_DJANGO_USER=andrzej
+      - REACT_DJANGO_PASSWORD=ad
     depends_on:
       - backend
 
