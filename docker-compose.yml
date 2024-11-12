@@ -1,7 +1,27 @@
 # docker-compose.yml
 
 #version: '3.8'
+
+
 services:
+  cai-db:
+    image: postgres:13
+    container_name: cai-db
+    restart: always
+    environment:
+      POSTGRES_USER: shortener
+      POSTGRES_PASSWORD: shortener
+      POSTGRES_DB: shortener
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persist data between restarts
+    networks:
+      app: null
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "shortener"]
+
   backend:
     build:
       context: ./server
@@ -12,18 +32,22 @@ services:
       - DEFAULT_COUNTRY = Poland
       - DOMAIN_NAME = http://center.ai/
       - SHORT_LINK_LENGTH = 8
-      - DB_USER = andrzej
-      - DB_PASSWORD = shortener
-      - DB_NAME =  shortener
+      - POSTGRES_USER = shortener
+      - POSTGRES_PASSWORD = shortener
+      - POSTGRES_NAME =  shortener
+      - POSTGRES_HOST =  cai-db
       - DEBUG = True
     ports:
       - "8000:8000"
     networks:
-      - app-network
+      app: null
     depends_on:
-      - db
-#    env_file:
-#      - ./server/.env
+      - cai-db
+    links:
+      - cai-db
+    env_file:
+      - ./server/.env
+    restart: on-failure
 
   frontend:
     build:
@@ -31,28 +55,24 @@ services:
       dockerfile: Dockerfile
     container_name: react_frontend
     ports:
-      - "80:3000"
+      - "80:80"
     networks:
-      - app-network
+      app: null
     environment:
-      - REACT_APP_API_URL=http://center.ai:8000/api/
+      - REACT_APP_API_URL=http://center.ai:8000/api
       - REACT_DJANGO_USER=andrzej
-      - REACT_DJANGO_PASSWORD=ad
+      - REACT_DJANGO_PASSWORD=admin123
     depends_on:
       - backend
 
-  db:
-    image: postgres:13
-    container_name: postgres_db
-    environment:
-      POSTGRES_USER: genius
-      POSTGRES_PASSWORD: nation
-      POSTGRES_DB: shortener
-    ports:
-      - "5432:5432"
-    networks:
-      - app-network
 
 networks:
-  app-network:
+  app:
     driver: bridge
+#    external: true
+
+volumes:
+  postgres_data:
+    driver: local
+
+

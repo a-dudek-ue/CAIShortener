@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-a**^(%dfmochdf9l36@!v!%$=pc=gh#qlh#isw4e^cp(!+5!+(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', True),
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["center.ai","localhost","127.0.0.1"]
 
 
 # Application definition
@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'CenterShortener.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'shortener'),
-        'USER': os.getenv('DB_USER', 'andrzej'),
-        'PASSWORD': os.getenv('DB_NAME', 'shortener'),
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('POSTGRES_NAME', 'shortener'),
+        'USER': os.getenv('POSTGRES_USER', 'shortener'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'shortener'),
+        'HOST': os.getenv('POSTGRES_HOST', 'cai-db'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
 

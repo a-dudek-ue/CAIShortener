@@ -27,7 +27,7 @@ def find_or_create_link(full_link: str,user:MyUser) -> Link:
     link = Link.objects.filter(full_link=full_link).first()
     if link:
         return link
-    short_link = generate_random_short_link(settings.SHORT_LINK_LENGTH)
+    short_link = generate_random_short_link(int(settings.SHORT_LINK_LENGTH))
     while Link.objects.filter(short_link=short_link).exists():
         short_link = generate_random_short_link()
 

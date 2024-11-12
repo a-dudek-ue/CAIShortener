@@ -5,7 +5,7 @@ import {getIpAddress, getBrowserAgent,isUrlValid} from "../helpers/helpers";
 
 export const API_URL = process.env.REACT_APP_API_URL || 'http://center.ai:8000/api';
 export const username = process.env.REACT_DJANGO_USER ||'andrzej';
-export const password = process.env.REACT_DJANGO_PASSWORD ||'ad';
+export const password = process.env.REACT_DJANGO_PASSWORD ||'admin123';
 
 const urlValidButNotActive = "URL valid but not active";
 const cannotGenerateLinkDueToInternalError = "Cannot generate link due to internal error, sorry";
@@ -50,7 +50,7 @@ export const createLink = async (full_link: string) => {
         if (ip===null){
             ip='Undefined'
         }
-        await setAuthToken('andrzej','ad');
+        await setAuthToken(username,password);
         const response = await api.post('/create_link/',{full_link: full_link,'ip':ip,'user_agent':getBrowserAgent()});
         console.log(response.status.toString())
         if(response.status==201){
@@ -88,11 +88,7 @@ export const retrieve_link =  async (short_link: string | undefined):Promise<boo
     if (ip===null){
         ip='Undefined'
     }
-    await setAuthToken('andrzej','ad');
-    // var at:any=authToken;
-    // if(at==null){
-    //     at=getAuthToken('andrzej','ad');
-    // }
+    await setAuthToken(username,password);
 
     try{
         const response = await api.post(`${API_URL}/click_link/`,{short_link:short_link,'ip':ip,'user_agent':getBrowserAgent()}
