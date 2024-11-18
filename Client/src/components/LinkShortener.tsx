@@ -71,118 +71,25 @@ const LinkShortener: React.FC = () => {
                         )}
                     </div>
                 </div>
-                <div className="container">
-                    {(localLinks && localLinks.length > 0 ) && (
-                        <p> Last links</p>)}
-                    {localLinks.map((link, index) => (
-                        <div className="result_old" id={"local_" + index}>
-                            <div className="result-text">{link.full_link}</div>
-                            <div className="result2">
-                            <div className="result-text"><a href={link.short_link}>{link.short_link}</a></div>
-                            <button className="copy_old" onClick={() => navigator.clipboard.writeText(link.short_link)}>
-                                <MdCopyAll className="copy-icon"/></button>
-                            </div>
-                        </div>
-                    ))}
 
-                </div>
+                    {(localLinks && localLinks.length > 0 ) && (
+                        <div className="container">
+                            <p> Last links</p>
+                            {localLinks.map((link, index) => index<3?(
+
+                                <div className="result_old" id={"local_" + index}>
+                                    <div className="result-text2">{link.full_link}</div>
+                                    <div className="result2">
+                                        <div className="result-text"><a href={link.short_link}>{link.short_link}</a>
+                                        </div>
+                                        <button className="copy_old"
+                                                onClick={() => navigator.clipboard.writeText(link.short_link)}>
+                                            <MdCopyAll className="copy-icon"/></button>
+                                    </div>
+                                </div>
+                            ):null)}
+                        </div>)};
             </div>
-        // </div>
-    );
-};
+    )};
 
 export default LinkShortener;
-
-
-                /*
-                return (
-                <div className=" home-container">
-                    <div className=" Frame1">
-            <div className=" container">
-                <div className=" Logo">
-                    <div className=" Vector"><span className=" f1">cen</span> <span className=" f2">t</span>
-                        <span className=" f1">er_a</span><span className=" f3">i</span>
-                    </div>
-                </div>
-                <div className=" Content">
-                    <div className=" Title">Short link</div>
-                    <label htmlFor=" fullLink">Link shortcut:</label>
-                    <input
-                        type=" text"
-                        className=" underline-input"
-                        id=" fullLink"
-                        value={fullLink}
-                        onChange={(e) => setFullLink(e.target.value)}
-                    />
-                    <button onClick={handleShorten}
-                            style={{backgroundColor: 'darkblue', borderRadius: '5px', color: 'white'}}>
-                        Shorten It
-                    </button>
-
-                    {shortLink && (
-                        <div>
-                            <p>Shortened Link: <a href={shortLink}>{shortLink}</a></p>
-                            <button onClick={() => navigator.clipboard.writeText(shortLink)}>Copy</button>
-                        </div>
-                    )}
-                </div>
-                {localLinks.map((link, index) => (
-                    <div>
-                        {link.short_link}
-                    </div>
-                ))}
-
-            </div>
-        </div>
-    </div>
-);
-*/
-/*
-// ShortLink.tsx
-import React, { useState } from 'react';
-import './ShortLink.css';
-
-const ShortLink: React.FC = () => {
-    const [inputLink, setInputLink] = useState('');
-    const [shortenedLink, setShortenedLink] = useState('');
-
-    const handleShorten = () => {
-        // Example logic to generate a shortened link - in a real app, this would be an API call
-        if (inputLink) {
-            const shortened = 'https://center.ai/pl-sg/';
-            setShortenedLink(shortened);
-        }
-    };
-
-    const handleCopy = () => {
-        if (shortenedLink) {
-            navigator.clipboard.writeText(shortenedLink);
-            alert('Shortened link copied to clipboard!');
-        }
-    };
-
-    return (
-        <div className=" short-link-container">
-            <h1>center_ai</h1>
-            <h2>Short link</h2>
-            <div className=" input-container">
-                <input
-                    type=" text"
-                    placeholder=" Link to shortcut"
-                    value={inputLink}
-                    onChange={(e) => setInputLink(e.target.value)}
-                />
-                <button onClick={handleShorten}>Shorten it</button>
-            </div>
-            {shortenedLink && (
-                <div className=" shortened-link">
-                    <input type=" text" value={shortenedLink} readOnly />
-                    <button onClick={handleCopy}>Copy</button>
-                </div>
-            )}
-        </div>
-    );
-};
-
-export default ShortLink;
-*/

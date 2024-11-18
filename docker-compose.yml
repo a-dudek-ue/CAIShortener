@@ -28,10 +28,6 @@ services:
       dockerfile: Dockerfile
     container_name: django_backend
     environment:
-      - SHORT_LINK_LENGTH=8
-      - DEFAULT_COUNTRY = Poland
-      - DOMAIN_NAME = http://center.ai/
-      - SHORT_LINK_LENGTH = 8
       - POSTGRES_USER = shortener
       - POSTGRES_PASSWORD = shortener
       - POSTGRES_NAME =  shortener

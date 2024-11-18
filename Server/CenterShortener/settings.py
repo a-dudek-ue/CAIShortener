@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a**^(%dfmochdf9l36@!v!%$=pc=gh#qlh#isw4e^cp(!+5!+('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', True),
+DEBUG = os.environ.get('DEBUG', True),
 
 ALLOWED_HOSTS = ["center.ai","localhost","127.0.0.1"]
 
@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'CenterShortener.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_NAME', 'shortener'),
-        'USER': os.getenv('POSTGRES_USER', 'shortener'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'shortener'),
-        'HOST': os.getenv('POSTGRES_HOST', 'cai-db'),
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),
+        'NAME': os.environ.get('POSTGRES_NAME', 'shortener'),
+        'USER': os.environ.get('POSTGRES_USER', 'shortener'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'shortener'),
+        'HOST': os.environ.get('POSTGRES_HOST', 'cai-db'),
+        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
     }
 }
 
@@ -146,6 +146,6 @@ GEOIP_PATH =os.path.join(BASE_DIR, 'geodata/')
 CORS_ALLOW_ALL_ORIGINS=True
 
 
-DEFAULT_COUNTRY =os.getenv('DEFAULT_COUNTRY', 'Poland');
-DOMAIN_NAME=os.getenv('DOMAIN_NAME',"http://center.ai/");
-SHORT_LINK_LENGTH=os.getenv('SHORT_LINK_LENGTH',8);
+DEFAULT_COUNTRY =os.environ.get('DEFAULT_COUNTRY', 'Poland');
+DOMAIN_NAME=os.environ.get('DOMAIN_NAME',"http://center.ai/");
+SHORT_LINK_LENGTH=os.environ.get('SHORT_LINK_LENGTH',8);

@@ -74,6 +74,7 @@ export const createLink = async (full_link: string) => {
         }
     }
     catch(error){
+        localStorage.removeItem('authToken');
         console.error('Error creating link:', error);
         return {"short_link":cannotGenerateLinkDueToInternalError,"full_link":cannotGenerateLinkDueToInternalError,"success":false};
     }
