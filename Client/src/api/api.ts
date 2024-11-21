@@ -23,7 +23,7 @@ const api = axios.create({
 
 export const getAuthToken = async(username:string, password:string) => {
  const response = await api.post(`${API_URL}/token/`, { "username":username, "password":password });
- if(response.data.access==null) {
+ if(response.data.access===null) {
      const response2 = await api.post(`${API_URL}/token/refresh`, { "refresh":"$response.data.refresh"});
      return response2.data.access;
  }
@@ -53,12 +53,12 @@ export const createLink = async (full_link: string) => {
         await setAuthToken(username,password);
         const response = await api.post('/create_link/',{full_link: full_link,'ip':ip,'user_agent':getBrowserAgent()});
         console.log(response.status.toString())
-        if(response.status==201){
+        if(response.status===201){
             let data=response.data;
             data["success"]=true
             return response.data;
         }
-        else if(response.status==204){
+        else if(response.status===204){
             return {
                 "short_link": urlValidButNotActive,
                 "full_link": urlValidButNotActive,
@@ -82,7 +82,7 @@ export const createLink = async (full_link: string) => {
 
 
 export const retrieve_link =  async (short_link: string | undefined):Promise<boolean> =>{
-    if(short_link == null){
+    if(short_link === null){
         return false;
     }
     var ip=await getIpAddress()
@@ -96,10 +96,10 @@ export const retrieve_link =  async (short_link: string | undefined):Promise<boo
         );
 
         // Assuming the backend returns a JSON object with `full_link`
-        if(response.status==204){
+        if(response.status===204){
             return false;
         }
-        else if (response.status==201) {
+        else if (response.status===201) {
             console.log(response.data);
             const fullLink = response.data.full_link;
 

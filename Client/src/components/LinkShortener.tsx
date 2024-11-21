@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import { createLink } from '../api/api';
 import "./LinkShortener.css";
-import {ShortLink,getLocalItems,saveLocalItems} from "../helpers/helpers";
+import {ShortLink,getLocalItems,saveLocalItems,copyToClipboard} from "../helpers/helpers";
 import { MdCopyAll } from 'react-icons/md';
+import { MdCheck } from "react-icons/md";
+import {Simulate} from "react-dom/test-utils";
 
 const LinkShortener: React.FC = () => {
     const [fullLink, setFullLink] = useState('');
     const [shortLink, setShortLink] = useState();
     const [localLinks, setLocalLinks] = useState<ShortLink[]>([]);
+    const [copied, setCopied] = useState(false);
 
     const handleShorten = async () => {
         const result = await createLink(fullLink);
@@ -66,7 +69,10 @@ const LinkShortener: React.FC = () => {
                         {shortLink && (
                             <div className="result">
                                 <p className="result-text"> <a href={shortLink}>{shortLink}</a></p>
-                                <button onClick={() => navigator.clipboard.writeText(shortLink)}><MdCopyAll/></button>
+                                <button onClick={() => copyToClipboard(shortLink).then(() => {
+                                  setCopied(true);
+                                  setTimeout(() => setCopied(false), 2000);
+                                })}>{copied ? <MdCheck /> : <MdCopyAll/>} </button>
                             </div>
                         )}
                     </div>
@@ -83,7 +89,7 @@ const LinkShortener: React.FC = () => {
                                         <div className="result-text"><a href={link.short_link}>{link.short_link}</a>
                                         </div>
                                         <button className="copy_old"
-                                                onClick={() => navigator.clipboard.writeText(link.short_link)}>
+                                                onClick={() => copyToClipboard(link.short_link)}>
                                             <MdCopyAll className="copy-icon"/></button>
                                     </div>
                                 </div>

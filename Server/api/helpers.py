@@ -50,6 +50,9 @@ def get_country(ip:str) ->str:
 
 def is_url_active(url: str) -> bool:
     try:
+        url_not_checked_external = ["localhost", "127.0.0.1", "center"]
+        if any(keyword in url for keyword in url_not_checked_external):
+            return True
         response = requests.head(url, allow_redirects=True, timeout=20)
         return response.status_code // 100 == 2
     except Exception as e:
